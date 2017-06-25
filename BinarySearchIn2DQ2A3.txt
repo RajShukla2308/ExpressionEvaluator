@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+int arr[][]={10,20,30,40},
+            {15,25,35,45},
+            {27,29,37,48},
+            {32,33,39,50};
+int R=4,C=4,m;
+cout<<"enter number to be searched";
+cin>>m;
+    for(int i=0;i<R;i++)
+     { 
+        for(int j=0;j<C;j++)
+           {
+             search(arr,0,R-1,0,C-1,arr[i][j]); 
+            }
+     }
+    
+}
+void search(int arr[][],int fromR,int toR,int fromC,int toC,int m)
+ {
+    int x=fromR+(toR-fromR)/2;
+    int y=fromC+(toC-fromC)/2;
+        
+       if(arr[i][j]==m)
+          {
+           cout<<"found at"<<x<<","<<y;
+          }
+       else
+          {  
+              if(x!=toR||y!=fromC)
+               search(arr,fromR,x,y,toC,m);
+              if((fromR==toR)&&(fromC+1==toC))
+                  {              
+                   if(arr[fromR][toC]==m)
+                     cout<<"found at"<<fromR<<","<<toC;
+                  }
+             if(arr[x][y]<m)
+                     {   
+                       if(x+1<=toR)
+                     search(arr,x+1,toR,fromC,toC,m);
+                     }
+             else
+                     {
+                       if(y-1>=fromC)
+                     search(arr,fromR,toR,fromC,y-1,m);
+                     }
+          }      
+  }            
